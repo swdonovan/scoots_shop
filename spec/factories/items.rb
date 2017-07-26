@@ -1,9 +1,16 @@
 FactoryGirl.define do
   factory :item do
-    title "MyString"
+
+    sequence :title do |t|
+      "#{t} title"
+    end
+
     description "MyText"
-    price "9.99"
-    image "MyText"
-    role 1
+
+    sequence :price do |t|
+      t
+    end
+
+    image "https://jetimages.azureedge.net/md5/ad0fa3578baeba1eefdc2579ffe862f3.500"  
   end
 end
