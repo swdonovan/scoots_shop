@@ -5,9 +5,12 @@ RSpec.feature "Visitor can add items to their cart" do
     item1, item2, item3 = create_list(:item, 3)
     total = item1.price + item3.price
     visit root_path
-
+# save_and_open_page
     click_button "Add to Cart", match: :first
-    click_button "Add to Cart", match: :last
+    # click_button "Add to Cart", match: :last
+    # page.find('.item-3').click
+    save_and_open_page
+    click_on("#item-3")
     click_on "View Cart"
 
     expect(current_path).to eq('/cart')
