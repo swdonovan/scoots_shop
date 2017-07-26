@@ -8,7 +8,7 @@ RSpec.feature 'User visits an individual category show page' do
     category.items << [item1, item2]
 
     visit "/#{category.name}"
-save_and_open_page
+    
     expect(page).to have_content category.name
     expect(page).to have_content item1.title
     expect(page).to have_content item1.description
