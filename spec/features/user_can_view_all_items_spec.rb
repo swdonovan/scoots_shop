@@ -11,7 +11,7 @@ RSpec.feature "User can visit Items Index Page" do
     within '.ProductIndexHeader' do
       expect(page).to have_content "All Products"
     end
-save_and_open_page
+# save_and_open_page
     expect(page).to have_content item_1.title
     expect(page).to have_content item_2.price
     expect(page).to have_content item_3.description
