@@ -19,6 +19,7 @@ RSpec.feature "Visitor can add items to their cart" do
     expect(page).to have_content(item3.description)
     expect(page).to have_content(item1.price)
     expect(page).to have_content(item3.price)
+    save_and_open_page
     expect(page).to have_content("Total Price: #{total}")
   end
 end

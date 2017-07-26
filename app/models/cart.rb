@@ -10,6 +10,8 @@ class Cart
   end
 
   def total_price
-    @contents.values.
+    sum = @contents.keys.inject(0) do |sum, key|
+      sum += (@contents[key] * Item.find(key).price)
+    end
   end
 end
