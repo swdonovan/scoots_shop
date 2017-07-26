@@ -1,0 +1,20 @@
+<h2><%= @category.name %></h2>
+
+<table>
+  <tr>
+    <th>Thumbnail</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Role</th>
+  </tr>
+  <% @category.items.each do |item| %>
+      <tr>
+        <td><%= image_tag(item.image) %></td>
+        <td><%= item.title %></td>
+        <td><%= item.description %></td>
+        <td><%= item.price %></td>
+        <td><%= item.role %></td>
+      </tr>
+  <% end %>
+</table>
