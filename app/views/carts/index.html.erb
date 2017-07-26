@@ -1,0 +1,10 @@
+<h1>Cart</h1>
+
+<ul>
+  <% @items.each do |item| %>
+    <img src="<%= item.image %>" alt="">
+    <li><%= item.title %></li>
+    <li><%= item.description %></li>
+    <li><%= item.price %></li>
+  <% end %>
+</ul>
