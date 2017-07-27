@@ -1,0 +1,18 @@
+<h1>Cart</h1>
+
+<ul>
+  <% @items.each do |item| %>
+    <img src="<%= item.image %>" alt="">
+    <li><%= item.title %></li>
+    <li><%= item.description %></li>
+    <li><%= item.price %></li>
+    <li id="item-<%= item.id %>-quantity">
+      Quantity: <%= @cart.quantity(item.id) %>
+      <%= button_to "", carts_path(item_to_increase: item.id), method: :patch, class: "glyphicon glyphicon-triangle-top", id: "increase-item-#{item.id}" %>
+      <%= button_to "", carts_path(item_to_decrease: item.id), method: :patch, class: "glyphicon glyphicon-triangle-bottom", id: "decrease-item-#{item.id}" %>
+    </li>
+    <li><%= link_to 'Remove', carts_path(item_id: item.id), method: :delete, id: "remove-item-#{item.id}" %></li>
+  <% end %>
+</ul>
+
+<li>Total Price: $<%= @cart.total_price %></li>

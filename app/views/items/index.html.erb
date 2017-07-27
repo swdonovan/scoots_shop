@@ -6,6 +6,7 @@
     <li><%= item.title %></li>
     <%= item.description %>
     <%= item.price %><br /><br />
+    <%= button_to "Add to Cart", carts_path(item_id: item.id), class: "btn btn-primary", id: "item-#{item.id}" %>
   </div>
 <% end %>
 </div>

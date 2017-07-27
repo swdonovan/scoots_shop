@@ -5,7 +5,9 @@ FactoryGirl.define do
       "#{t} title"
     end
 
-    description "MyText"
+    sequence :description do |t|
+      "#{t} description"
+    end
 
     sequence :price do |t|
       t
