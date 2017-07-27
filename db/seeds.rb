@@ -6,20 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-10.times do
-  title = Faker::Commerce.product_name
-  price = Faker::Commerce.price
-  description = Faker::HowIMetYourMother.quote
-  image = Faker::LoremPixel.image
-  Item.create(title: title, price: price, description: description, image: image)
-end
+item1 = Item.create(title: 'Scooter', description: 'Its a scooter', price: 39.99)
+item2 = Item.create(title: 'Faster Scooter', description: 'Its a faster scooter', price: 39.99)
+item3 = Item.create(title: 'Slower Scooter', description: 'Its a slower scooter', price: 39.99)
 
-item_ids = Item.pluck(:id)
+cat1 = Category.create(name: 'Fast Scoots')
+cat2 = Category.create(name: 'Slow Scoots')
 
-5.times do
-  name = Faker::Job.field
-  category = Category.create(name: name)
-  2.times do
-    category.items << Item.find(item_ids.sample)
-  end
-end
+cat1.items << [item1, item2]
+cat2.items << item3
