@@ -3,10 +3,13 @@ class CartsController < ApplicationController
 
   def create
     item = Item.find(params[:item_id])
-    @cart = Cart.new(session[:cart])
     @cart.add_item(item.id)
     session[:cart] = @cart.contents
-    redirect_to root_path
+    if params[:to_cart]
+      redirect_to cart_path
+    else
+      redirect_to root_path
+    end
   end
 
   def index
@@ -17,7 +20,7 @@ class CartsController < ApplicationController
     item = Item.find(params[:item_id])
     @cart.remove_item(item.id)
 
-    flash[:success] = "Successfully removed #{view_context.link_to(item.title, '/carts', method: :post)} from your cart."
+    flash[:success] = "Successfully removed #{view_context.link_to(item.title, carts_path(item_id: item.id, to_cart: true), method: :post)} from your cart."
     redirect_to '/cart'
   end
 
