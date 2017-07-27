@@ -45,6 +45,15 @@ RSpec.describe Cart, type: :model do
 
         expect(cart.quantity(3)).to eq 3
       end
+
+      describe '#decrease_item' do
+        it 'should decrease the quantity of an item' do
+          cart = Cart.new({"3" => 2, "2" => 1})
+          cart.decrease_item(3)
+
+          expect(cart.quantity(3)).to eq 1
+        end
+      end
     end
   end
 end
