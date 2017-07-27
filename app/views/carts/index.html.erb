@@ -6,6 +6,7 @@
     <li><%= item.title %></li>
     <li><%= item.description %></li>
     <li><%= item.price %></li>
+    <li><%= link_to 'Remove', carts_path(item_id: item.id), method: :delete, id: "remove-item-#{item.id}" %></li>
   <% end %>
 </ul>
 

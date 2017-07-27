@@ -14,4 +14,8 @@ class Cart
       sum += (@contents[key] * Item.find(key).price)
     end
   end
+
+  def remove_item(item_id)
+    @contents.delete(item_id.to_s)
+  end
 end
