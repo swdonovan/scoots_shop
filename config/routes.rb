@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'items#index'
   get '/cart', to: 'carts#index'
   delete '/carts', to: 'carts#destroy'
+  patch '/carts', to: 'carts#update'
 
   resources :items, only: :index
 

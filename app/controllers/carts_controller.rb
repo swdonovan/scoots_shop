@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:create, :index, :destroy]
+  before_action :set_cart, only: [:create, :index, :destroy, :update]
 
   def create
     item = Item.find(params[:item_id])
@@ -17,5 +17,12 @@ class CartsController < ApplicationController
     @cart.remove_item(params[:item_id])
 
     redirect_to '/cart'
+  end
+
+  def update
+    if params[:item_to_increase]
+      @cart.increase_item(params[:item_to_increase])
+    end
+    redirect_to cart_path
   end
 end

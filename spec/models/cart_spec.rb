@@ -29,5 +29,22 @@ RSpec.describe Cart, type: :model do
         expect(cart.contents).to eq(expected)
       end
     end
+
+    describe '#quantity' do
+      it 'should display the quantity of items' do
+        cart = Cart.new({"3" => 2, "2" => 1})
+
+        expect(cart.quantity(3)).to eq(2)
+      end
+    end
+
+    describe '#increase_item' do
+      it 'should increase the quantity of an item' do
+        cart = Cart.new({"3" => 2, "2" => 1})
+        cart.increase_item(3)
+
+        expect(cart.quantity(3)).to eq 3
+      end
+    end
   end
 end

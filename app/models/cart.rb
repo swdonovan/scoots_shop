@@ -18,4 +18,12 @@ class Cart
   def remove_item(item_id)
     @contents.delete(item_id.to_s)
   end
+
+  def quantity(item_id)
+    @contents[item_id.to_s]
+  end
+
+  def increase_item(item_id)
+    @contents[item_id.to_s] += 1
+  end
 end
