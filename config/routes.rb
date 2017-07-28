@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :items, only: :index
   get '/dashboard', to: 'users#show'
   resources :carts, only: [:create]
-
+  resources :users, only: [:new, :create]
   #reassure the dynamic get command is properly routed towards the end
   get "/:category_name", to: 'categories#show'
 

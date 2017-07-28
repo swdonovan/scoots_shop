@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "User visits home page" do
-  scenario "and creates an account" do
+  scenario "and clicks 'Login' without an account" do
 
     visit root_path
 
@@ -14,15 +14,21 @@ RSpec.feature "User visits home page" do
 
     click_on "Create Account"
 
+    expect(current_path).to eq new_user_path
+
     fill_in "user[username]", with: "scootypuffjr"
     fill_in "user[password]", with: "suuuuuuuucks"
+    fill_in "user[address]", with: "123 Street St"
+    fill_in "user[email]", with: "spjunior@planetexpress.com"
 
     click_on "Get Ur Scoot On"
 
     expect(current_path).to eq("/dashboard")
 
+    user = User.last
+
     within(".navbar") do
-      expect(page).to have_content("Logged in as #{user_attributes[:username]}")
+      expect(page).to have_content("Logged in as #{user.username}")
     end
 
     expect(page).to have_content(user.username)
