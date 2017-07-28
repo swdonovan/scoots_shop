@@ -1,0 +1,8 @@
+<div class="row text-center">
+  <h1><%= @item.title %></h1>
+  <%= image_tag(@item.image) %>
+  <p><%= @item.description %></p>
+  <p>Price: <%= @item.price %></p>
+  <p>Status: <%= @item.role %></p>
+  <%= button_to 'Item Retired', '#', class: 'btn btn-primary', disabled: true %>
+</div>
