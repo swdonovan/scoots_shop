@@ -4,5 +4,10 @@
   <p><%= @item.description %></p>
   <p>Price: <%= @item.price %></p>
   <p>Status: <%= @item.role %></p>
-  <%= button_to 'Item Retired', '#', class: 'btn btn-primary', disabled: true %>
+
+  <% if @item.active?%>
+    <%= button_to "Add to Cart", carts_path(item_id: @item.id), class: "btn btn-primary", id: "item-#{@item.id}" %>
+  <% else %>
+    <%= button_to 'Item Retired', '#', class: 'btn btn-primary', disabled: true %>
+  <% end %>
 </div>
