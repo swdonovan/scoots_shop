@@ -18,7 +18,6 @@ RSpec.feature "User visits home page" do
 
     fill_in "user[username]", with: "scootypuffjr"
     fill_in "user[password]", with: "suuuuuuuucks"
-    fill_in "user[address]", with: "123 Street St"
     fill_in "user[email]", with: "spjunior@planetexpress.com"
 
     click_on "Get Ur Scoot On"
@@ -32,7 +31,6 @@ RSpec.feature "User visits home page" do
     end
 
     expect(page).to have_content(user.username)
-    expect(page).to have_content(user.address)
     expect(page).to have_content(user.email)
     expect(page).to_not have_link "Login"
     expect(page).to have_link "Logout"
