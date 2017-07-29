@@ -7,7 +7,7 @@ RSpec.describe "A user sees thier completed orderss" do
     user_order1 = create(:order, user_id: user.id)
     user_order2 = create(:order, user_id: user.id)
 
-    visit user_orders_path
+    visit user_orders_path(user)
 
     expect(page).to have_content("Your order from #{user_order1.submitted_at}")
     expect(page).to have_content("Your order from #{user_order2.submitted_at}")

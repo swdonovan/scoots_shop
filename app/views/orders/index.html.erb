@@ -1,0 +1,5 @@
+<h1> Here are your orders from the following dates </h1>
+
+<h1>  <%= @user.orders.each do |order| %> </h1>
+<p>   <%= order.resolved_at.to_s %> </p>  <!--- These could become link in story 13 --->
+      <% end %>
