@@ -11,5 +11,6 @@ RSpec.describe "A user sees thier completed orderss" do
 
     expect(page).to have_content("Your order from #{user_order1.submitted_at}")
     expect(page).to have_content("Your order from #{user_order2.submitted_at}")
+    save_and_open_page
   end
 end
