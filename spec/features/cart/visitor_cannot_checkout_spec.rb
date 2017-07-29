@@ -10,9 +10,9 @@ RSpec.feature 'Visitor visits the cart page' do
     click_button "Add to Cart", match: :first
     page.find("#item-#{item3.id}").click
     click_on "View Cart"
-
-    expect(page).to have_button 'Login or Create Account to Checkout'
-    click_button 'Login or Create Account to Checkout'
+    expect(page).to have_link 'Login or Create Account to Checkout'
+    click_on 'Login or Create Account to Checkout'
+    click_on 'Create Account'
 
     fill_in 'user[username]', with: 'scootsmaster'
     fill_in 'user[email]', with: 'i_toot_scoots@scooteron.com'
@@ -31,5 +31,6 @@ RSpec.feature 'Visitor visits the cart page' do
     expect(page).to have_content(item1.price)
     expect(page).to have_content(item3.price)
     expect(page).to have_content("Total Price: $#{total}")
+    expect(page).to have_link 'Checkout'
   end
 end
