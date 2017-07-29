@@ -2,11 +2,8 @@ require 'rails_helper'
 
 RSpec.feature 'User visits a page for a retired item' do
   scenario 'and sees the item but cannot add it to the cart' do
-    user = create(:user)
     item = create(:item, role: 1)
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-    and_return(user)
     visit item_path(item)
 
     expect(current_path).to eq "/items/#{item.id}"
