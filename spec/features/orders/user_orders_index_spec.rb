@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "A user sees thier completed orderss" do
+RSpec.describe "A user sees their completed orders" do
   scenario "logged-in user can see all completed orders" do
     user_attributes = {
                         username: "scootmaster",
