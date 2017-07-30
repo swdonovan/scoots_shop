@@ -6,7 +6,7 @@ RSpec.describe "A logged-in user has a previous order" do
   user = create(:user)
   allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-  order = create(:order, :with_items, item_count:3, user_id: user.id)
+  order = create(:order, :with_items, item_count: 3, user_id: user.id)
   item1 = order.items(0)
   item2 = order.items(1)
   item3 = order.items(2)
