@@ -1,0 +1,39 @@
+<h2>Your order placed <%= @order.created_at %> </h2>
+
+<div class="row">
+  <% @order.order_items.each do |order_item| %>
+  <%# require 'pry'; binding.pry %>
+    <% item = order_item.item %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= image_tag(item.image, class: "img-thumbnail") %>
+      </div>
+      <div class="col-md-3">
+        <%= link_to item.title, item_path(item) %>
+      </div>
+      <div class="col-md-3">
+        Quantity: <%= order_item.item_quantity %>
+      </div>
+      <div class="col-md-3">
+        Subtotal: <%= order_item.line_item_total %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <%= @order.status %>
+    </div>
+    <div class="col-md-3">
+      <%= @order.total_price %>
+    </div>
+    <div class="col-md-3">
+      <%= @order.created_at %>
+    </div>
+    <div class="col-md-3">
+      <% if @order.completed? || @order.cancelled? %>
+        <%= @order.resolved_at %>
+      <% end %>
+    </div>
+  </div>

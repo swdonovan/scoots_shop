@@ -12,13 +12,14 @@
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/login', to: 'sessions#destroy'
-  get '/dashboard', to: 'users#show'
 
   resources :items, only: [:index, :show]
 
+  get '/dashboard', to: 'users#show'
+
   resources :carts, only: [:create]
 
-  resources :orders, only: :index
+  resources :orders, only: [:index, :show]
 
   resources :users, only: [:new, :create]
 
