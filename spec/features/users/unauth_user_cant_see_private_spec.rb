@@ -8,13 +8,14 @@ RSpec.describe "Unauthenticated user" do
    expect(current_path).to eq(login_path)
    expect(page).to have_content("You must login to see your orders")
   end
-  skip "user should be redirected to login if tries to checkout" do
-    #this is dependent on user story 15 (checkout)
+  scenario "user should be redirected to login if tries to checkout" do
 
-    #code:
-    #visit checkout or whatever
-    #redireted to login page
+    visit root_path
 
+    click_on "View Cart"
+    expect(page).to have_link 'Login or Create Account to Checkout'
+    click_on 'Login or Create Account to Checkout'
+    expect(current_path).to eq(login_path)
 
   end
   scenario "unauthorized/unauthenticated user tries to access admin page" do
