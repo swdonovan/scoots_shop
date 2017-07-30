@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-
+  before_action :set_user, only: :show
+  
   def show
-    @user = User.find(params[:id])
-    if session[:user_id] == @user.id
+    if session_check?(@user)
       render 'show'
     else
       session[:user_id] = nil
@@ -27,5 +27,9 @@ class UsersController < ApplicationController
 
   def user_attributes
     params.require(:user).permit(:username, :password, :address, :email)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
