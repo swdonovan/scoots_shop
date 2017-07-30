@@ -1,31 +1,73 @@
 require 'rails_helper'
 
-# describe "Admin can login and see they are an admin" do
-#   scenario "their dashboard shows that they are an admin" do
-#     @admin = User.create(username: "Bob", email: "bob@bob", password: "centrelli",
-#                         role: 1)
-#
-#     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
-#
-#     visit root_path
-#
-#     within '.acct-dropdown-menu' do
-#
-#       click_link "Admin Dashboard"
-#     end
-#
-#     expect(current_path).to eq admin_user_path(@admin)
-#   end
-#
-#   # describe "User can not view index of companies" do
-#   #   # scenario "instead they are redirected to a statistics page about companies" do
-#   #   scenario "instead they are redirected to the error page" do
-#   #     @user = User.create(name: "Cletus", email: "cl@etus", password: "centrelli")
-#   #
-#   #     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-#   #
-#   #     visit 'admin/'
-#   #
-#   #   end
-#   # end
-# end
+describe "Admin can login and see they are an admin" do
+  scenario "their dashboard shows that they are an admin" do
+    @admin = User.create(username: "Bob", email: "bob@bob", password: "centrelli",
+                        role: 1)
+    visit root_path
+
+    within '.acct-dropdown-menu' do
+      click_link "Login"
+    end
+
+    expect(current_path).to eq login_path
+    fill_in "Username", with: "Bob"
+    fill_in "Password", with: "centrelli"
+    click_button "Get Ur Scoot On"
+    expect(current_path).to eq dashboard_path
+
+    within '.acct-dropdown-menu' do
+      click_link "Admin Dashboard"
+    end
+    expect(current_path).to eq admin_user_path(@admin)
+    expect(page).to have_content "you currently possess the almighty admin privilages"
+  end
+
+  describe "User can not view admin dashboard" do
+    scenario "instead they are redirected to the login page" do
+      @user = User.create(username: "Cletus", email: "cl@etus", password: "centrelli")
+
+      visit root_path
+
+      within '.acct-dropdown-menu' do
+        click_link "Login"
+      end
+
+      expect(current_path).to eq login_path
+      fill_in "Username", with: "Cletus"
+      fill_in "Password", with: "centrelli"
+      click_button "Get Ur Scoot On"
+      expect(current_path).to eq dashboard_path
+
+      within '.acct-dropdown-menu' do
+        expect(page).to_not have_content "Admin Dashboard"
+      end
+    end
+  end
+
+  describe "User can not hack into admin dashboard" do
+    scenario "instead they are redirected to the login page" do
+      @user = User.create(username: "Cletus", email: "cl@etus", password: "centrelli")
+
+      visit root_path
+
+      within '.acct-dropdown-menu' do
+        click_link "Login"
+      end
+
+      expect(current_path).to eq login_path
+      fill_in "Username", with: "Cletus"
+      fill_in "Password", with: "centrelli"
+      click_button "Get Ur Scoot On"
+      expect(current_path).to eq dashboard_path
+
+      within '.acct-dropdown-menu' do
+        expect(page).to_not have_content "Admin Dashboard"
+      end
+
+      # visit '/admin/users/2'
+      # expect(current_path).to eq login_path
+      # this works and kicks a user out, testing won't represent it.
+    end
+  end
+end
