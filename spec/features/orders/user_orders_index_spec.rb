@@ -31,8 +31,8 @@ RSpec.describe "A user sees their completed orders" do
 
     visit orders_path
 
-    expect(page).to have_content("Your order from #{user_order1.submitted_at}")
-    expect(page).to have_content("Your order from #{user_order2.submitted_at}")
+    expect(page).to have_content("Your order from #{user_order1.created_at}")
+    expect(page).to have_content("Your order from #{user_order2.created_at}")
 
   end
 end

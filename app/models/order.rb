@@ -4,4 +4,9 @@ class Order < ApplicationRecord
   has_many :items, through: :order_items
 
   enum status: [:ordered, :paid, :cancelled, :completed]
+
+  def total_price
+    order_items.sum(:line_item_total)
+  end
+
 end
