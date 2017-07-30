@@ -7,9 +7,9 @@ RSpec.describe "A logged-in user has a previous order" do
   allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
   order = create(:order, :with_items, item_count: 3, user_id: user.id)
-  item1 = order.items(0)
-  item2 = order.items(1)
-  item3 = order.items(2)
+  # require 'pry', binding.pry
+  item1 = order.items.first
+  item2 = order.items.last
 # When I visit "/orders"
   visit orders_path
 # Then I should see my past order
@@ -21,17 +21,16 @@ RSpec.describe "A logged-in user has a previous order" do
 # Then I should see each item that was ordered with the quantity and line-item subtotals
   expect(page).to have_content item1.image
   expect(page).to have_content item2.image
-  expect(page).to have_content item3.image
+
   expect(page).to have_content item1.quantity
   expect(page).to have_content item2.quantity
-  expect(page).to have_content item3.quantity
+
   expect(page).to have_content item1.line_item_total
   expect(page).to have_content item2.line_item_total
-  expect(page).to have_content item3.line_item_total
+
 # And I should see links to each item's show page
   expect(page).to have_link item1.title
   expect(page).to have_link item2.title
-  expect(page).to have_link item3.title
 # And I should see the current status of the order (ordered, paid, cancelled, completed)
   expect(page).to have_content order.status
 # And I should see the total price for the order

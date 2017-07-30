@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
       flash[:message] = "You must login to see your orders"
       redirect_to login_path
     end
-    byebug
+    # byebug
   end
 
 end
