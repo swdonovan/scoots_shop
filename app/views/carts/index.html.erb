@@ -6,13 +6,13 @@
       <div class="col-md-2">
         <img src="<%= item.image %>" class="img-thumbnail">
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <p><%= item.title %></p>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-5">
         <p><%= item.description %></p>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <p><%= item.price %></p>
       </div>
       <div class="col-md-2" id="item-<%= item.id %>-quantity">
@@ -20,10 +20,20 @@
         <%= link_to "", carts_path(item_to_increase: item.id), method: :patch, class: "glyphicon glyphicon-triangle-top", id: "increase-item-#{item.id}" %>
         <%= link_to "", carts_path(item_to_decrease: item.id), method: :patch, class: "glyphicon glyphicon-triangle-bottom", id: "decrease-item-#{item.id}" %>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <p><%= link_to 'Remove', carts_path(item_id: item.id), method: :delete, id: "remove-item-#{item.id}" %></p>
       </div>
     </div>
   <% end %>
-  <p style="float: right;">Total Price: $<%= @cart.total_price %></p>
+
+  <div class="row cart-item">
+    <div class="col-md-2 pull-right">
+      <p>Total Price: $<%= @cart.total_price %></p>
+      <% if current_user %>
+        <%= link_to 'Checkout', '#', class: 'btn btn-primary' %>
+      <% else %>
+        <%= link_to 'Login or Create Account to Checkout', login_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
 </div>
