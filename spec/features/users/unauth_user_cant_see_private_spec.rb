@@ -17,12 +17,11 @@ RSpec.describe "Unauthenticated user" do
 
 
   end
-  scenario "unauthorized/unauthenticated user tries to make self admin" do
+  scenario "unauthorized/unauthenticated user tries to access admin page" do
 
     visit admin_user_path(1)
 
 
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
-    save_and_open_page
   end
 end
