@@ -57,6 +57,12 @@ RSpec.describe Order, type: :model do
 
         expect(result).to eq(Order.all)
       end
+
+      it "should return only orders that with status of order" do
+        result = Order.sorted_orders('ordered')
+
+        expect(result).to eq([order1, order2])
+      end
     end
   end
 end
