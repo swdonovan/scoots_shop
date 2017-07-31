@@ -1,0 +1,57 @@
+<div class="row">
+  <% @cart.cart_items.each do |item| %>
+    <div class="row cart-item">
+      <div class="col-md-2">
+        <img src="<%= item.image %>" class="img-thumbnail">
+      </div>
+      <div class="col-md-1">
+        <p><%= item.title %></p>
+      </div>
+      <div class="col-md-5">
+        <p><%= item.description %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= item.price %></p>
+      </div>
+      <div class="col-md-2" id="item-<%= item.id %>-quantity">
+        Quantity: <%= @cart.quantity(item.id) %>
+        <%= link_to "", carts_path(item_to_increase: item.id), method: :patch, class: "glyphicon glyphicon-triangle-top", id: "increase-item-#{item.id}" %>
+        <%= link_to "", carts_path(item_to_decrease: item.id), method: :patch, class: "glyphicon glyphicon-triangle-bottom", id: "decrease-item-#{item.id}" %>
+      </div>
+      <div class="col-md-1">
+        <p><%= link_to 'Remove', carts_path(item_id: item.id), method: :delete, id: "remove-item-#{item.id}" %></p>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row cart-item">
+    <div class="col-md-2 pull-right">
+      <p>Total Price: $<%= @cart.total_price %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <%= form_for checkout_path do |f| %>
+
+      <a>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </a><br />
+
+      <a>
+        <%= f.label :credit_card %>
+        <%= f.number_field :credit_card %>
+      </a><br />
+
+      <a>
+        <%= f.label :name_on_card %>
+        <%= f.text_field :name %>
+      </a><br />
+
+      <%= f.submit %>
+
+      <% end %>
+    </div>
+  </div>
+</div>
