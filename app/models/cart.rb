@@ -30,4 +30,15 @@ class Cart
   def decrease_item(item_id)
     @contents[item_id.to_s] -= 1
   end
+
+  def order_items_attributes
+    @contents.map do |id, quantity|
+      price = Item.find(id).price
+      {
+        item_id: id.to_i,
+        item_quantity: quantity,
+        line_item_total: quantity * price
+      }
+    end
+  end
 end
