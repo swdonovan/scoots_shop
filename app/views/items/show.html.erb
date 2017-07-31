@@ -18,14 +18,14 @@
         </div>
     </div>
 
-    <div class="section" style="padding-bottom:20px;">
+    <!-- <div class="section" style="padding-bottom:20px;">
         <h6 class="title-attr"><small>Quantity</small></h6>
         <div>
             <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
-            <input value="1" />
+            <input value="1"/>
             <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
         </div>
-    </div>
+    </div> -->
 
 
     <div class="section" style="padding-bottom:20px;">
@@ -34,7 +34,7 @@
         <%= button_to carts_path(item_id: @item.id), class: "btn btn-success", id: "item-#{@item.id}" do %>
           <span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
           Add to Cart
-          <% end %>
+        <% end %>
         <% else %>
           <%= button_to 'Item Retired', '#', class: 'btn btn-danger', disabled: true %>
         <% end %>
