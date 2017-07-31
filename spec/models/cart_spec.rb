@@ -54,6 +54,25 @@ RSpec.describe Cart, type: :model do
           expect(cart.quantity(3)).to eq 1
         end
       end
+
+      describe '#order_items_attributes' do
+        it "returns an array of order item attributes" do
+          item1, item2 = create_list(:item, 2)
+          cart = Cart.new({})
+          cart.add_item(item1.id)
+          cart.add_item(item1.id)
+          cart.add_item(item2.id)
+
+          result = cart.order_items_attributes
+
+          expected = [
+            {item_id: item1.id, item_quantity: 2, line_item_total: item1.price * 2},
+            {item_id: item2.id, item_quantity: 1, line_item_total: item2.price * 1}
+          ]
+
+          expect(result).to eq (expected)
+        end
+      end
     end
   end
 end

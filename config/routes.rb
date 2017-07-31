@@ -19,7 +19,7 @@
 
   resources :carts, only: [:create]
 
-  resources :orders, only: [:index, :show]
+  resources :orders, only: [:index, :show, :create]
 
   resources :users, only: [:new, :create]
 
