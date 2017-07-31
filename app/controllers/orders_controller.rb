@@ -16,8 +16,9 @@ class OrdersController < ApplicationController
   def create
     order = Order.create(user_id: current_user.id, order_items_attributes: @cart.order_items_attributes)
 
+    flash[:success] = 'Order was successfully placed'
     @cart.contents.clear
-    session[:cart].clear
+    session[:cart].clear if session[:cart]
 
     redirect_to orders_path
   end
