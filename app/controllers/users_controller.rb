@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: :show
-  
+
   def show
     if session_check?(@user)
       render 'show'
