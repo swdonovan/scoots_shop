@@ -1,13 +1,55 @@
-<div class="row text-center">
-  <h1><%= @item.title %></h1>
-  <%= image_tag(@item.image) %>
-  <p><%= @item.description %></p>
-  <p>Price: <%= @item.price %></p>
-  <p>Status: <%= @item.role %></p>
+<div class="row">
+  <div class="col-xs-4 item-photo">
+    <%= image_tag(@item.image) %>
+  </div>
+  <div class="col-xs-5" style="border:0px solid gray">
+    <h1><%= @item.title %></h1>
 
-  <% if @item.active?%>
-    <%= button_to "Add to Cart", carts_path(item_id: @item.id), class: "btn btn-primary", id: "item-#{@item.id}" %>
-  <% else %>
-    <%= button_to 'Item Retired', '#', class: 'btn btn-primary', disabled: true %>
-  <% end %>
-</div>
+    <h5 style="color:#337ab7"><a href="#"><%= @item.categories.first.name %></a><small style="color:#337ab7"></small></h5>
+
+    <h6 class="title-price"><small>Price</small></h6>
+    <h3 style="margin-top:0px;"> $<%= @item.price %></h3>
+
+    <div class="section" style="padding-bottom:5px;">
+        <h6 class="title-attr"><small>CC (engine displacement)</small></h6>
+        <div>
+            <div class="attr2">80 CC</div>
+            <div class="attr2">120 CC</div>
+        </div>
+    </div>
+
+    <div class="section" style="padding-bottom:20px;">
+        <h6 class="title-attr"><small>Quantity</small></h6>
+        <div>
+            <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
+            <input value="1" />
+            <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
+        </div>
+    </div>
+
+
+    <div class="section" style="padding-bottom:20px;">
+      <!-- <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button> -->
+        <% if @item.active?%>
+        <%= button_to carts_path(item_id: @item.id), class: "btn btn-success", id: "item-#{@item.id}" do %>
+          <span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+          Add to Cart
+          <% end %>
+        <% else %>
+          <%= button_to 'Item Retired', '#', class: 'btn btn-danger', disabled: true %>
+        <% end %>
+        <h6><a href="#"><span class="glyphicon glyphicon-thumbs-up" style="cursor:pointer;"></span> Status: <%= @item.role %></a></h6>
+      </div>
+    </div>
+    <div class="col-xs-9">
+      <ul class="menu-items">
+        <li class="active">Description</li>
+        <li>Specs</li>
+      </ul>
+      <div style="width:100%;border-top:1px solid silver">
+      <p style="padding:15px;">
+          <small>
+            <%= @item.description %>
+          </small>
+        </div>
+  </div>

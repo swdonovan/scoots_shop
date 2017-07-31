@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.feature 'User visits an individual item show page' do
   scenario 'and sees information for that item' do
     item = create(:item)
+    category = create(:category, name: "Medium Speed")
+    item.categories << category
 
     visit item_path(item)
 
