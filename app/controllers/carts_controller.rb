@@ -2,7 +2,6 @@ class CartsController < ApplicationController
   before_action :set_cart, only: [:create, :index, :destroy, :update]
 
   def create
-    require "pry"; binding.pry
     item = Item.find(params[:item_id])
     @cart.add_item(item.id)
     session[:cart] = @cart.contents
