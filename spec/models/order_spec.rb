@@ -43,5 +43,20 @@ RSpec.describe Order, type: :model do
         expect(Order.count_by_status).to eq(expected)
       end
     end
+
+    describe '.sorted_orders' do
+      let(:user)  { create(:user) }
+      let(:order1) { create(:order, :with_items, user_id: user.id) }
+      let(:order2) { create(:order, :with_items, user_id: user.id) }
+      let(:paid_orders) { create_list(:order, 2, status: 1, user_id: user.id) }
+      let(:cancelled_ordrs) { create_list(:order, 3, status: 2, user_id: user.id) }
+      let(:completed_orders) { create_list(:order, 1, status: 3, user_id: user.id) }
+
+      it "should return all orders by default" do
+        result = Order.sorted_orders
+
+        expect(result).to eq(Order.all)
+      end
+    end
   end
 end
