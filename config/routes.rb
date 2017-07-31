@@ -1,5 +1,9 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
   root to: 'items#index'
+
+  namespace :admin do
+    resources :users, only: [:update, :show]
+  end
 
   get '/cart', to: 'carts#index'
   delete '/carts', to: 'carts#destroy'
@@ -15,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:create]
 
-  resources :orders, only: :index
+  resources :orders, only: [:index, :show]
 
   resources :users, only: [:new, :create]
 

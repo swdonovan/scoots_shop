@@ -4,6 +4,6 @@ FactoryGirl.define do
     address "MyString"
     email "MyString"
     role 1
-    password_digest "MyString"
+    password "MyString"
   end
 end
