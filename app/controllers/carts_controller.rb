@@ -5,6 +5,7 @@ class CartsController < ApplicationController
     item = Item.find(params[:item_id])
     @cart.add_item(item.id)
     session[:cart] = @cart.contents
+    flash[:success] = "Added #{item.title} to your cart"
 
     redirect_to request.referrer
   end
