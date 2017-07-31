@@ -30,4 +30,8 @@ class Cart
   def decrease_item(item_id)
     @contents[item_id.to_s] -= 1
   end
+
+  def cart_items
+    @items = Item.find(@contents.keys)
+  end
 end

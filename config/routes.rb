@@ -23,6 +23,9 @@
 
   resources :users, only: [:new, :create]
 
+  get '/checkout', to: 'orders#new'
+  post '/checkout', to: 'orders#create'
+
   #reassure the dynamic get command is properly routed towards the end
   get "/:category_name", to: 'categories#show'
 

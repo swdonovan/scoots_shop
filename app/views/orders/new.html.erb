@@ -1,7 +1,5 @@
-<h1>Cart</h1>
-
 <div class="row">
-  <% @items.each do |item| %>
+  <% @cart.cart_items.each do |item| %>
     <div class="row cart-item">
       <div class="col-md-2">
         <img src="<%= item.image %>" class="img-thumbnail">
@@ -29,10 +27,30 @@
   <div class="row cart-item">
     <div class="col-md-2 pull-right">
       <p>Total Price: $<%= @cart.total_price %></p>
-      <% if current_user %>
-        <%= link_to 'Checkout', '/checkout', class: 'btn btn-primary' %>
-      <% else %>
-        <%= link_to 'Login or Create Account to Checkout', login_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <%= form_for checkout_path do |f| %>
+
+      <a>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </a><br />
+
+      <a>
+        <%= f.label :credit_card %>
+        <%= f.number_field :credit_card %>
+      </a><br />
+
+      <a>
+        <%= f.label :name_on_card %>
+        <%= f.text_field :name %>
+      </a><br />
+
+      <%= f.submit %>
+
       <% end %>
     </div>
   </div>
