@@ -1,0 +1,8 @@
+<h1> Here are your past orders: </h1>
+
+<% @orders.each do |order| %>
+  <p>
+    Your order from <%= order.created_at.to_s %>
+    <%= link_to "View Order", order_path(order) %>
+  </p>
+<% end %>
