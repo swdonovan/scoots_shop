@@ -56,9 +56,13 @@ heroku run rake db:migrate
 ## Features
 
 What's all the bells and whistles this project can perform?
-* What's the main functionality
-* You can also do another thing
-* If you get really randy, you can even do this
+* Users can create accounts, add items to their cart, and checkout
+* Ability to browse items by category
+* Admin privileges for application control
+* Dynamic functionality with cart items
+  - Ability to increase or decrease item quantity from cart View
+  - Ability to remove items from cart with link in flash message to add item back to cart
+  - Each item in cart has a link to it's individual page
 
 ## Configuration
 
