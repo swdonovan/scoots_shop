@@ -3,6 +3,7 @@
 
   namespace :admin do
     resources :users, only: [:update, :show]
+    resources :orders, only: [:show, :index]
   end
 
   get '/cart', to: 'carts#index'
