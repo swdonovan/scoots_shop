@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.feature 'User visits a page for a retired item' do
   scenario 'and sees the item but cannot add it to the cart' do
     item = create(:item, role: 1)
+    category = create(:category, name: "Medium Speed")
+    item.categories << category
 
     visit item_path(item)
 
