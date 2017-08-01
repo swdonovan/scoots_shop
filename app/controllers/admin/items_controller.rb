@@ -5,5 +5,12 @@ class Admin::ItemsController < Admin::AdminController
   end
 
   def create
+    @item = Item.create(item_attributes)
+  end
+
+  private
+
+  def item_attributes
+    params.require(:item).permit(:title, :description, :price, :category_ids, :image)
   end
 end
