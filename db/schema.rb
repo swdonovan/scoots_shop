@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(version: 20170731211532) do
     t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "order_items", force: :cascade do |t|
