@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: :show
+  before_action :set_user, only: [:show, :edit, :update]
 
   def show
     if session_check?(@user)
@@ -22,10 +22,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @user.update(user_attributes)
+      redirect_to dashboard_path(id: @user.id)
+    else
+      render '404'
+    end
+  end
+
   private
 
   def user_attributes
-    params.require(:user).permit(:username, :password, :address, :email)
+    params.require(:user).permit(:full_name, :username, :password, :address, :email)
   end
 
   def set_user
