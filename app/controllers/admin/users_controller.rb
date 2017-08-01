@@ -11,6 +11,8 @@ class Admin::UsersController < Admin::AdminController
     end
   end
 
+  def dashboard
+  end
   # def update
   #   if session_check?(@user)
   #     render 'edit'
