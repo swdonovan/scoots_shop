@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::AdminController
 
   def show
     if session_check?(@user)
-      render 'admins/users/show'
+      render 'admin/users/show'
     else
       session[:user_id] = nil
       flash[:danger] = "GET OUT"
