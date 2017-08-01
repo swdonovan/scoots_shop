@@ -20,7 +20,6 @@ describe "Admin can login and see they are an admin" do
       click_link "Admin Dashboard"
     end
     expect(current_path).to eq admin_user_path(@admin)
-    expect(page).to have_content "you currently possess the almighty admin privilages"
   end
 
   describe "User can not view admin dashboard" do

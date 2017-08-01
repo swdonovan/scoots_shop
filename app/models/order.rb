@@ -15,17 +15,7 @@ class Order < ApplicationRecord
     Order.group(:status).count
   end
 
-  def self.sorted_orders(sort_by='all')
-    if sort_by == 'ordered'
-      Order.ordered
-    elsif sort_by == 'paid'
-      Order.paid
-    elsif sort_by == 'cancelled'
-      Order.cancelled
-    elsif sort_by == 'completed'
-      Order.completed
-    else
-      Order.all
-    end
+  def self.sorted_orders(sort_by)
+    Order.where(status: sort_by)
   end
 end
