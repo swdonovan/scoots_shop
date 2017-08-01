@@ -7,14 +7,18 @@ describe 'Admin can create an item' do
                         email: 'scootypuff@scoots.com',
                         password: 'hmmmmmmmm',
                         role: 1)
+    Category.create(name: "Cross Country")
+    Category.create(name: "Crosstown")
+    Category.create(name: "Sport")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
     visit new_admin_item_path
     save_and_open_page
     fill_in 'item[title]', with: 'Scoot scoot scoot'
     fill_in 'item[description]', with: 'all over the place'
     fill_in 'item[price]', with: 199.99
-    fill_in 'item[category]', with: 'Junior series'
+    check 'item_category_ids_1'
 
     click_button 'Create Item'
 

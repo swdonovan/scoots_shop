@@ -9,8 +9,11 @@
   <%= f.label :price %>
   <%= f.text_field :price %>
 
-  <%= f.label :category %>
-  <%= f.text_field :category %>
+  <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |o| %>
+    <div class="checkbox" style="height: 10%; width: 33%; display: inline-block;">
+      <%= o.label {o.check_box(type: 'checkbox') + o.text} %>
+    </div>
+  <% end %>
 
   <%= f.label :image %>
   <%= f.url_field :image %>

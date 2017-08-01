@@ -3,7 +3,7 @@
 
   namespace :admin do
     resources :users, only: [:update, :show]
-    resources :items, only: [:new]
+    resources :items, only: [:new, :create]
   end
 
   get '/cart', to: 'carts#index'
@@ -14,7 +14,7 @@
   post '/login', to: 'sessions#create'
   delete '/login', to: 'sessions#destroy'
 
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show, :create]
 
   get '/dashboard', to: 'users#show'
 
