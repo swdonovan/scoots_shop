@@ -22,4 +22,12 @@ class OrdersController < ApplicationController
 
     redirect_to orders_path
   end
+
+  def update
+    order = Order.find(params[:id])
+
+    order.update(status: params[:status])
+
+    redirect_to request.referrer
+  end
 end
