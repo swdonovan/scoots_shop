@@ -28,23 +28,13 @@ describe 'Admin can create an item' do
     check "Cross Country"
     click_button 'Create Item'
 
-    # save_and_open_page
     item = Item.last
-
 
     expect(current_path).to eq item_path(item.id)
     expect(page).to have_content(item.title)
     expect(page).to have_content(item.description)
     expect(page).to have_content(item.price)
     expect(page).to have_content(item.categories.last.name)
-# The photo is optional. If not present, a stand-in photo is used. (PAPERCLIP)
     expect(page).to have_css "img[src='#{item.image}']"
   end
 end
-
-# (model test)
-# An item must have a title, description and price.
-# An item must belong to at least one category.
-# The title and description cannot be empty.
-# The title must be unique for all items in the system.
-# The price must be a valid decimal numeric value and greater than zero.
