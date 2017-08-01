@@ -7,6 +7,7 @@ class Admin::UsersController < Admin::AdminController
     else
       @orders = Order.all
     end
+    
     @status_count = Order.count_by_status
   end
 
