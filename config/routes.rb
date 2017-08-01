@@ -14,7 +14,7 @@
   post '/login', to: 'sessions#create'
   delete '/login', to: 'sessions#destroy'
 
-  resources :items, only: [:index, :show, :create]
+  resources :items, only: [:index, :show]
 
   get '/dashboard', to: 'users#show'
 

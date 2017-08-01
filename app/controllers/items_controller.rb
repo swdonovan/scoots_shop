@@ -7,10 +7,4 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
   end
-
-  def create
-    if current_admin
-      item = Item.create()
-    end
-  end
 end
