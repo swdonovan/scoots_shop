@@ -14,7 +14,7 @@ describe 'Admin can create an item' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit new_admin_item_path
-    save_and_open_page
+
     fill_in 'item[title]', with: 'Scoot scoot scoot'
     fill_in 'item[description]', with: 'all over the place'
     fill_in 'item[price]', with: 199.99
