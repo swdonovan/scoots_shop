@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::AdminController
 
   def show
     if session_check?(@user)
-      render 'admins/users/show'
+      render 'admin/users/show'
     else
       session[:user_id] = nil
       flash[:danger] = "GET OUT"
@@ -11,15 +11,9 @@ class Admin::UsersController < Admin::AdminController
     end
   end
 
-  # def update
-  #   if session_check?(@user)
-  #     render 'edit'
-  #   else
-  #     session[:user_id] = nil
-  #     flash[:danger] = "GET OUT"
-  #     redirect_to login_path
-  #   end
-  # end
+  def dashboard
+
+  end
 
   private
 

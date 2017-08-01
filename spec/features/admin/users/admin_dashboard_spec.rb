@@ -24,7 +24,7 @@ RSpec.describe "Accessing admin dashboard" do
     expect(page).to have_content "you currently possess the almighty admin privilages"  #at this point admin is logged-in
 
     visit admin_dashboard_path
-    save_and_open_page 
+    # save_and_open_page
     expect(current_path).to eq(admin_dashboard_path)
     expect(page).to have_content("Admin Dashboard")
   end

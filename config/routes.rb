@@ -3,7 +3,7 @@
 
   namespace :admin do
     resources :users, only: [:update, :show]
-    get '/dashboard', to: 'admin#show'
+    get '/dashboard', to: 'users#dashboard'
   end
 
   get '/cart', to: 'carts#index'
