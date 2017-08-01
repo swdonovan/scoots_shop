@@ -25,12 +25,8 @@ describe 'Admin can create an item' do
     fill_in 'item[description]', with: 'all over the place'
     fill_in 'item[price]', with: 199.99
 
-    within '#item_category_ids_1' do
-      check "Cross Country"
-    end
-
-save_and_open_page
-
+    check "Cross Country"
+    # save_and_open_page
     click_button 'Create Item'
 
     item = Item.last
@@ -40,7 +36,7 @@ save_and_open_page
     expect(page).to have_content(item.title)
     expect(page).to have_content(item.description)
     expect(page).to have_content(item.price)
-    expect(page).to have_content(item.category)
+    expect(page).to have_content(item.categories.last.name)
 # The photo is optional. If not present, a stand-in photo is used. (PAPERCLIP)
     # expect(page).to have_css PAPERCLIP image
   end
