@@ -5,6 +5,7 @@
     resources :users, only: [:update, :show]
     get '/dashboard', to: 'users#dashboard'
     resources :items, only: [:new, :create]
+    resources :orders, only: [:show, :index]
   end
 
   get '/cart', to: 'carts#index'

@@ -1,0 +1,6 @@
+<h2>Order placed <%= @order.created_at %> </h2>
+<ul>
+  <li><%= @order.user.full_name %></li>
+  <p><%= @order.address %></p>
+</ul>
+<%= render partial: 'orders/show_items' %>
