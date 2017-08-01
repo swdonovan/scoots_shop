@@ -18,6 +18,12 @@ class Order < ApplicationRecord
   def self.sorted_orders(sort_by='all')
     if sort_by == 'ordered'
       Order.ordered
+    elsif sort_by == 'paid'
+      Order.paid
+    elsif sort_by == 'cancelled'
+      Order.cancelled
+    elsif sort_by == 'completed'
+      Order.completed
     else
       Order.all
     end

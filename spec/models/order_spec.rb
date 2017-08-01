@@ -58,10 +58,28 @@ RSpec.describe Order, type: :model do
         expect(result).to eq(Order.all)
       end
 
-      it "should return only orders that with status of order" do
+      it "should return only orders that with status of ordered" do
         result = Order.sorted_orders('ordered')
 
         expect(result).to eq([order1, order2])
+      end
+
+      it "should return only orders that with status of paid" do
+        result = Order.sorted_orders('paid')
+
+        expect(result).to eq(paid_orders)
+      end
+
+      it "should return only orders that with status of cancelled" do
+        result = Order.sorted_orders('cancelled')
+
+        expect(result).to eq(cancelled_ordrs)
+      end
+      
+      it "should return only orders that with status of cancelled" do
+        result = Order.sorted_orders('cancelled')
+
+        expect(result).to eq(cancelled_ordrs)
       end
     end
   end
