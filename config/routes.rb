@@ -3,6 +3,8 @@
 
   namespace :admin do
     resources :users, only: [:update, :show]
+    get '/dashboard', to: 'users#dashboard'
+    resources :orders, only: [:index]
     resources :orders, only: [:show, :index]
   end
 
@@ -20,7 +22,7 @@
 
   resources :carts, only: [:create]
 
-  resources :orders, only: [:index, :show, :create]
+  resources :orders, only: [:index, :show, :create, :update]
 
   resources :users, only: [:new, :create]
 

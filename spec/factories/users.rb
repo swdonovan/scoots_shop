@@ -3,7 +3,13 @@ FactoryGirl.define do
     username "MyString"
     address "MyString"
     email "MyString"
-    role 1
+    role 0
     password "MyString"
+
+    factory :admin do
+      username 'admin_dude'
+      email 'admin@scoots.com'
+      role 1
+    end
   end
 end
