@@ -1,5 +1,5 @@
 class Admin::ItemsController < Admin::AdminController
-  before_action :set_item, only: [:show, :edit]
+  before_action :set_item, only: [:show, :edit, :update]
   def index
       @items = Item.all
   end
@@ -8,6 +8,7 @@ class Admin::ItemsController < Admin::AdminController
   end
 
   def edit
+
   end
 
   def new
@@ -24,13 +25,23 @@ class Admin::ItemsController < Admin::AdminController
     end
   end
 
+  def update
+    if @item.update(item_attributes)
+      flash[:success] = 'Item updated successfully'
+      redirect_to admin_item_path(@item)
+    else
+      flash[:danger] = 'Invalid information, try again'
+      render :edit
+    end
+  end
+
   private
 
   def set_item
     @item = Item.find(params[:id])
   end
-  
+
   def item_attributes
-    params.require(:item).permit(:title, :description, :price, :image, category_ids: [])
+    params.require(:item).permit(:title, :description, :price, :image, :role, category_ids: [])
   end
 end

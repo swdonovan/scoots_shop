@@ -2,7 +2,7 @@
   root to: 'items#index'
 
   namespace :admin do
-    resources :users, only: [:update, :show]
+    resources :users, only: [:update, :show, :edit]
     resources :items, only: [:index, :show, :update, :edit, :new, :create]
     get '/dashboard', to: 'users#dashboard'
     resources :orders, only: [:show, :index]
@@ -24,7 +24,7 @@
 
   resources :orders, only: [:index, :show, :create, :update]
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
 
   #reassure the dynamic get command is properly routed towards the end
   get "/:category_name", to: 'categories#show'

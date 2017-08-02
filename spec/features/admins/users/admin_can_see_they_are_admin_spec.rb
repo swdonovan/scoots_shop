@@ -14,12 +14,12 @@ describe "Admin can login and see they are an admin" do
     fill_in "Username", with: "Bob"
     fill_in "Password", with: "centrelli"
     click_button "Get Ur Scoot On"
-    expect(current_path).to eq dashboard_path
+    expect(current_path).to eq admin_dashboard_path
 
     within '.acct-dropdown-menu' do
       click_link "Admin Dashboard"
     end
-    expect(current_path).to eq admin_user_path(@admin)
+    expect(current_path).to eq admin_dashboard_path
   end
 
   describe "User can not view admin dashboard" do
@@ -38,9 +38,9 @@ describe "Admin can login and see they are an admin" do
       click_button "Get Ur Scoot On"
       expect(current_path).to eq dashboard_path
 
-      within '.acct-dropdown-menu' do
-        expect(page).to_not have_content "Admin Dashboard"
-      end
+      visit admin_dashboard_path
+
+      expect(page).to have_content '404'
     end
   end
 
