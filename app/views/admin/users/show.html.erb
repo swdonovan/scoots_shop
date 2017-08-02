@@ -4,3 +4,5 @@
 <% end %>
 <p> <%= @user.email %> </p>
 <p> <%= @user.address %> </p>
+
+<%= button_to "Edit Info", edit_admin_user_path(@user)  %>

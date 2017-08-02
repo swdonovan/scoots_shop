@@ -11,6 +11,11 @@ class Admin::UsersController < Admin::AdminController
     end
   end
 
+  def edit
+    @user = User.find(session[:user_id])
+  end
+
+
   def dashboard
 
   end
