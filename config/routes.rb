@@ -2,7 +2,7 @@
   root to: 'items#index'
 
   namespace :admin do
-    resources :users, only: [:update, :show]
+    resources :users, only: [:update, :show, :edit]
     resources :items, only: [:index, :show, :update, :edit, :new, :create]
     get '/dashboard', to: 'users#dashboard'
     resources :orders, only: [:show, :index]
