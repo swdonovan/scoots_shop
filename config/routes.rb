@@ -4,7 +4,7 @@
   namespace :admin do
     resources :users, only: [:update, :show]
     get '/dashboard', to: 'users#dashboard'
-    resources :orders, only: [:index]
+    resources :items, only: [:new, :create]
     resources :orders, only: [:show, :index]
   end
 
