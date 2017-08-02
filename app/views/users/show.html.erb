@@ -12,7 +12,7 @@
 
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title"><h1> Welcome to your scoot-mare, <%= @user.username %>   </h1></h3>
+              <h3 class="panel-title"><h1> Welcome to your scoot-mare, <%= @user.full_name %>   </h1></h3>
             </div>
             <div class="panel-body">
               <div class="row">
@@ -45,9 +45,11 @@
                       </tr>
                         <td>Recent Purchases:</td>
                         <td>
-                          <%= link_to @user.orders[-2].created_at, order_path(@user.orders[-2]) %>
+                          <% if @user.orders.present? %>
+                          <%= link_to @user.orders.second_to_last.created_at, order_path(@user.orders[-2]) %>
                           <br><br>
                           <%= link_to @user.orders.last.created_at, order_path(@user.orders.last) %>
+                          <% end %>
                         </td>
 
                       </tr>
