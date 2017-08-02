@@ -10,7 +10,7 @@ RSpec.feature 'User visits an individual item show page' do
     user.admin!
 
     visit admin_item_path(item)
-
+save_and_open_page
     expect(current_path).to eq "/admin/items/#{item.id}"
     expect(page).to have_content item.title
     expect(page).to have_content item.description
