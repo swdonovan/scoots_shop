@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   has_many :orders, through: :order_items
   has_many :order_items
 
-  has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200"}
+  has_attached_file :image, styles: { small: "50x50", med: "100x100", large: "200x200"}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   validates :categories, presence: true
