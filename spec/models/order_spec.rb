@@ -22,4 +22,59 @@ RSpec.describe Order, type: :model do
       end
     end
   end
+
+  describe 'class methods' do
+    describe '.count_by_status' do
+      it "should return a hash of statuses with the total counts" do
+        user = create(:user)
+        order1 = create(:order, :with_items, user_id: user.id)
+        order2 = create(:order, :with_items, user_id: user.id)
+        paid_orders = create_list(:order, 2, status: 1, user_id: user.id)
+        cancelled_ordrs = create_list(:order, 3, status: 2, user_id: user.id)
+        completed_orders = create_list(:order, 1, status: 3, user_id: user.id)
+
+        expected = {
+          'ordered' => 2,
+          'paid' => 2,
+          'cancelled' => 3,
+          'completed' => 1
+        }
+
+        expect(Order.count_by_status).to eq(expected)
+      end
+    end
+
+    describe '.sorted_orders' do
+      let(:user)  { create(:user) }
+      let(:order1) { create(:order, :with_items, user_id: user.id) }
+      let(:order2) { create(:order, :with_items, user_id: user.id) }
+      let(:paid_orders) { create_list(:order, 2, status: 1, user_id: user.id) }
+      let(:cancelled_ordrs) { create_list(:order, 3, status: 2, user_id: user.id) }
+      let(:completed_orders) { create_list(:order, 1, status: 3, user_id: user.id) }
+
+      it "should return only orders that with status of ordered" do
+        result = Order.sorted_orders('ordered')
+
+        expect(result).to eq([order1, order2])
+      end
+
+      it "should return only orders that with status of paid" do
+        result = Order.sorted_orders('paid')
+
+        expect(result).to eq(paid_orders)
+      end
+
+      it "should return only orders that with status of cancelled" do
+        result = Order.sorted_orders('cancelled')
+
+        expect(result).to eq(cancelled_ordrs)
+      end
+
+      it "should return only orders that with status of cancelled" do
+        result = Order.sorted_orders('cancelled')
+
+        expect(result).to eq(cancelled_ordrs)
+      end
+    end
+  end
 end

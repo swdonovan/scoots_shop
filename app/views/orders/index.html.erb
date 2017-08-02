@@ -1,8 +1,14 @@
 <h1> Here are your past orders: </h1>
 
-<% @orders.each do |order| %>
-  <p>
-    Your order from <%= order.created_at.to_s %>
-    <%= link_to "View Order", order_path(order) %>
-  </p>
-<% end %>
+<table class="table orders-table">
+  <tr>
+    <th>Order</th>
+    <th>View Order</th>
+  </tr>
+  <% @orders.each do |order| %>
+    <tr>
+      <td>Your order from <%= order.created_at.to_s %></td>
+      <td><%= link_to "View Order", order_path(order) %></td>
+    </tr>
+  <% end %>
+</table>

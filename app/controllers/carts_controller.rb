@@ -5,11 +5,9 @@ class CartsController < ApplicationController
     item = Item.find(params[:item_id])
     @cart.add_item(item.id)
     session[:cart] = @cart.contents
-    if params[:to_cart]
-      redirect_to cart_path
-    else
-      redirect_to root_path
-    end
+    flash[:success] = "Added #{item.title} to your cart"
+
+    redirect_to request.referrer
   end
 
   def index

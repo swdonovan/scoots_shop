@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: :show
-  
+
   def show
     if session_check?(@user)
       render 'show'
@@ -15,18 +15,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_attributes)
+    @user = User.new(user_attributes)
     if @user.save
       session[:user_id] = @user.id
       redirect_to dashboard_path(id: @user.id)
     else
+      render :new
     end
   end
 
   private
 
   def user_attributes
-    params.require(:user).permit(:username, :password, :address, :email)
+    params.require(:user).permit(:full_name, :username, :password, :address, :email)
   end
 
   def set_user
