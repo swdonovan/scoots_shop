@@ -35,6 +35,6 @@ describe 'Admin can create an item' do
     expect(page).to have_content(item.description)
     expect(page).to have_content(item.price)
     expect(page).to have_content(item.categories.last.name)
-    expect(page).to have_css "img[src='#{item.image}']"
+    expect(page).to have_css "img[src='/images/medium/bazooka-vespa.png']"
   end
 end

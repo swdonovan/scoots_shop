@@ -10,11 +10,11 @@ RSpec.feature 'User visits an individual item show page' do
     user.admin!
 
     visit admin_item_path(item)
-save_and_open_page
+
     expect(current_path).to eq "/admin/items/#{item.id}"
     expect(page).to have_content item.title
     expect(page).to have_content item.description
-    expect(page).to have_css "img[src='#{item.image}']"
+    expect(page).to have_css "img[src='/images/small/bazooka-vespa.png']"
     expect(page).to have_content item.price
     expect(page).to have_content item.role
     expect(page).to_not have_button "Add to Cart"
