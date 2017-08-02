@@ -15,11 +15,15 @@ user = User.create(username: 'user', password: 'user', email: 'user@scoots.com')
 
 cat1 = Category.create(name: 'Fast Scoots')
 cat2 = Category.create(name: 'Slow Scoots')
+cat3 = Category.create(name: 'Faster Scoots')
+cat4 = Category.create(name: 'Scooter Scoots')
 
 item1 = Item.create!(title: 'Scooter', description: 'Its a scooter', price: 39.99, category_ids: [cat1.id])
 item2 = Item.create!(title: 'Faster Scooter', description: 'Its a faster scooter', price: 39.99, category_ids: [cat1.id])
 item3 = Item.create!(title: 'Slower Scooter', description: 'Its a slower scooter', price: 39.99, category_ids: [cat2.id])
-
+item4 = Item.create!(title: 'Scooter Scooter', description: 'Its a slower scooter', price: 39.99, category_ids: [cat1.id, cat3.id])
+item5 = Item.create!(title: 'Fastest Scooter', description: 'Its a slower scooter', price: 39.99, category_ids: [cat1.id, cat3.id, cat4.id])
+item6 = Item.create!(title: 'Slowest Scooter', description: 'Its a slower scooter', price: 39.99, category_ids: [cat2.id, cat4.id])
 
 # cat1.items << [item1, item2]
 # cat2.items << item3
