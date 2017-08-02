@@ -24,7 +24,7 @@
 
   resources :orders, only: [:index, :show, :create, :update]
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
 
   #reassure the dynamic get command is properly routed towards the end
   get "/:category_name", to: 'categories#show'

@@ -32,7 +32,7 @@
               <% if current_admin %>
                 <li><a href="<%=  admin_dashboard_path  %>">Admin Dashboard</a></li>
               <% end %>
-            <li><a href="#"> <%= "Logged in as #{current_user.username}" %> </a></li>
+            <li><a href="<%= dashboard_path(id: current_user.id) %>"> <%= "Logged in as #{current_user.username}" %> </a></li>
             <li> <%= link_to "Logout", login_path, method: :delete %></li>
           <% else %>
             <li><a href="/users/new">Signup</a></li>

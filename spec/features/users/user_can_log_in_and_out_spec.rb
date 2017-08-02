@@ -35,7 +35,7 @@ RSpec.feature "User visits the home page" do
 
     expect(page).to have_link "Logout"
 
-    click_on "Logout"
+    find('#page-logout').click
 
     expect(page).to have_link "Login"
     expect(page).to_not have_link "Logout"
