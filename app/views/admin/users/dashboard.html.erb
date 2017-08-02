@@ -1,43 +1,45 @@
-<h1>Admin Dashboard</h1>
+<div class="opaque-back">
+  <h1>Admin Dashboard</h1>
 
-<h2>Count by Order Status</h2>
+  <h2>Count by Order Status</h2>
 
-<% @status_count.each do |status, count| %>
-  <p><%= "#{status.capitalize}: #{count}" %></p>
-<% end %>
-
-<h2>Orders by Status</h2>
-<p>
-  <%= link_to 'All', admin_dashboard_path%> |
-  <%= link_to 'Ordered', admin_dashboard_path(sort_by: 'ordered') %> |
-  <%= link_to 'Paid', admin_dashboard_path(sort_by: 'paid') %> |
-  <%= link_to 'Cancelled', admin_dashboard_path(sort_by: 'cancelled') %> |
-  <%= link_to 'Completed', admin_dashboard_path(sort_by: 'completed') %>
-</p>
-<table class="table table-<%= @sort %>">
-  <tr>
-    <th>Order</th>
-    <th>Status</th>
-    <th>Actions</th>
-  </tr>
-  <% @orders.each do |order| %>
-    <tr>
-      <td>Order created at <%= order.created_at %></td>
-      <td><%= order.status %></td>
-      <td>
-        <%= link_to 'View Order', order_path(order) %>
-        <% if order.ordered? || order.paid? %>
-           | <%= link_to 'Cancel', order_path(id: order.id, status: 'cancelled'), method: :put %>
-        <% end %>
-
-        <% if order.ordered? %>
-           | <%= link_to 'Mark as Paid', order_path(id: order.id, status: 'paid'), method: :put %>
-        <% elsif order.paid?%>
-           | <%= link_to 'Mark as Completed', order_path(id: order.id, status: 'completed'), method: :put %>
-        <% end %>
-      </td>
-    </tr>
+  <% @status_count.each do |status, count| %>
+    <p><%= "#{status.capitalize}: #{count}" %></p>
   <% end %>
-</table>
 
-<%= link_to "Create New Item", new_admin_item_path %>
+  <h2>Orders by Status</h2>
+  <p>
+    <%= link_to 'All', admin_dashboard_path%> |
+    <%= link_to 'Ordered', admin_dashboard_path(sort_by: 'ordered') %> |
+    <%= link_to 'Paid', admin_dashboard_path(sort_by: 'paid') %> |
+    <%= link_to 'Cancelled', admin_dashboard_path(sort_by: 'cancelled') %> |
+    <%= link_to 'Completed', admin_dashboard_path(sort_by: 'completed') %>
+  </p>
+  <table class="table table-<%= @sort %>">
+    <tr>
+      <th>Order</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <% @orders.each do |order| %>
+      <tr>
+        <td>Order created at <%= order.created_at %></td>
+        <td><%= order.status %></td>
+        <td>
+          <%= link_to 'View Order', order_path(order) %>
+          <% if order.ordered? || order.paid? %>
+             | <%= link_to 'Cancel', order_path(id: order.id, status: 'cancelled'), method: :put %>
+          <% end %>
+
+          <% if order.ordered? %>
+             | <%= link_to 'Mark as Paid', order_path(id: order.id, status: 'paid'), method: :put %>
+          <% elsif order.paid?%>
+             | <%= link_to 'Mark as Completed', order_path(id: order.id, status: 'completed'), method: :put %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to "Create New Item", new_admin_item_path %>
+</div>

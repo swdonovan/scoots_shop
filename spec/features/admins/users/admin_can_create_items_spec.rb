@@ -24,8 +24,8 @@ describe 'Admin can create an item' do
     fill_in 'item[title]', with: 'Scoot scoot scoot'
     fill_in 'item[description]', with: 'all over the place'
     fill_in 'item[price]', with: 199.99
-
     check "Cross Country"
+    
     click_button 'Create Item'
 
     item = Item.last
