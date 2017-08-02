@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       flash[:success] = 'Logged in successfully'
-      admin_redirect
+      if @user.admin?
+        redirect_to admin_dashboard_path(id: @user.id)
+      else
+        redirect_to dashboard_path(id: @user.id)
+      end
     else
       flash[:danger] = 'Invalid username or password'
       render :new
@@ -20,13 +24,5 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     flash[:success] = 'Logged out successfully'
     redirect_to root_path
-  end
-
-  def admin_redirect
-    if @user.admin?
-      redirect_to admin_dashboard_path(id: @user.id)
-    else
-      redirect_to dashboard_path(id: @user.id)
-    end
   end
 end
