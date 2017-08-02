@@ -30,7 +30,7 @@
     <div class="col-md-2 pull-right">
       <p>Total Price: $<%= @cart.total_price %></p>
       <% if current_user %>
-        <%= link_to 'Checkout', orders_path, method: :post, class: 'btn btn-primary' %>
+        <%= link_to 'Checkout', checkout_path, class: 'btn btn-primary' %>
       <% else %>
         <%= link_to 'Login or Create Account to Checkout', login_path, class: 'btn btn-primary' %>
       <% end %>

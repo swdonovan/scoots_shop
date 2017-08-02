@@ -34,6 +34,7 @@ class Cart
 
   def cart_items
     @items = Item.find(@contents.keys)
+  end
 
   def order_items_attributes
     @contents.map do |id, quantity|

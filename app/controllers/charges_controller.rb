@@ -13,19 +13,21 @@ class ChargesController < ApplicationController
         :source  => params[:stripeToken]
       )
 
-    user = User.find_by(email: params[:stripeEmail])
-    @order = user.orders.create(submitted_at: Time.now)
-    @cart.cart_items.each {|item| @order.items << item }
+      order = Order.create(user_id: current_user.id, order_items_attributes: @cart.order_items_attributes)
 
-    flash[:success] = "Thanks, you paid #{@cart.total_price}! Have a great day"
-    
+      flash[:success] = 'Order was successfully placed'
+
+      flash[:success] = "Thanks, you paid #{@cart.total_price}! Have a great day"
+
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,
       :description => 'Rails Stripe customer',
       :currency    => 'usd'
     )
-    session[:cart].clear
+    @cart.contents.clear
+    session[:cart].clear if session[:cart]
+    redirect_to orders_path
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
