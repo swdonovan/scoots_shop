@@ -9,7 +9,8 @@ class Admin::ItemsController < Admin::AdminController
     if @item.save!
       redirect_to item_path(@item)
     else
-      render file: '/public/404'
+      flash[:danger] = 'Invalid information entered, try again'
+      render :new
     end
   end
 
