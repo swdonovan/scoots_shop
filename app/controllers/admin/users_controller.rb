@@ -1,7 +1,6 @@
 class Admin::UsersController < Admin::AdminController
 
   def show
-
   end
 
   def dashboard

@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :item do
 
     sequence :title do |t|
@@ -12,5 +13,10 @@ FactoryGirl.define do
     sequence :price do |t|
       t
     end
+
+    before(:create) do |item|
+      item.categories << create(:category)
+    end
+
   end
 end
