@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   has_many :orders, through: :order_items
   has_many :order_items
 
-  has_attached_file :image, styles: { small: "50x50", med: "100x100", large: "200x200"}, default_url: "/images/:style/bazooka-vespa.png"
+  has_attached_file :image, styles: { small: "50x50", med: "100x100", large: "650x650"}, default_url: "/images/:style/bazooka-vespa.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   validates :categories, presence: true
