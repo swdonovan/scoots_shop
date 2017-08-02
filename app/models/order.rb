@@ -11,4 +11,11 @@ class Order < ApplicationRecord
     order_items.sum(:line_item_total)
   end
 
+  def self.count_by_status
+    Order.group(:status).count
+  end
+
+  def self.sorted_orders(sort_by)
+    Order.where(status: sort_by)
+  end
 end
