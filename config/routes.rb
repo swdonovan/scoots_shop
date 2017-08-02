@@ -3,8 +3,8 @@
 
   namespace :admin do
     resources :users, only: [:update, :show]
+    resources :items, only: [:index, :show, :update, :edit, :new, :create]
     get '/dashboard', to: 'users#dashboard'
-    resources :items, only: [:new, :create]
     resources :orders, only: [:show, :index]
   end
 
