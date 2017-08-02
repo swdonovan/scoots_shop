@@ -7,7 +7,7 @@ describe 'Admin can create an item' do
                         email: 'scootypuff@scoots.com',
                         password: 'hmmmmmmmm',
                         role: 1)
-    cat1 = Category.create(name: "Cross Country")
+    Category.create(name: "Cross Country")
     Category.create(name: "Crosstown")
     Category.create(name: "Sport")
 
