@@ -7,4 +7,13 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   enum role: [:guest, :admin]
+
+  before_create :name_split
+
+  def name_split
+    if self.full_name
+      self.first_name = self.full_name.split(' ').first
+      self.last_name = self.full_name.split(' ').last
+    end
+  end
 end

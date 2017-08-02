@@ -1,25 +1,18 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, only: :show
 
   def show
-    if session_check?(@user)
-      render 'admins/users/show'
-    else
-      session[:user_id] = nil
-      flash[:danger] = "GET OUT"
-      redirect_to login_path
-    end
   end
 
-  # def update
-  #   if session_check?(@user)
-  #     render 'edit'
-  #   else
-  #     session[:user_id] = nil
-  #     flash[:danger] = "GET OUT"
-  #     redirect_to login_path
-  #   end
-  # end
+  def dashboard
+    if params[:sort_by]
+      @orders = Order.sorted_orders(params[:sort_by])
+      @sort = params[:sort_by]
+    else
+      @orders = Order.all
+    end
+
+    @status_count = Order.count_by_status
+  end
 
   private
 
