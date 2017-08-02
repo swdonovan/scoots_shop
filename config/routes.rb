@@ -22,7 +22,7 @@
 
   resources :carts, only: [:create]
 
-  resources :orders, only: [:index, :show, :create]
+  resources :orders, only: [:index, :show, :create, :update]
 
   resources :users, only: [:new, :create]
 
