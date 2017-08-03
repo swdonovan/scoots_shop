@@ -2,10 +2,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def show
-    if session_check?(@user)
-      render 'show'
-    else
+    unless session_check?(params[:id])
       session[:user_id] = nil
+      flash[:danger] = 'Request does not match current user information'
       redirect_to login_path
     end
   end

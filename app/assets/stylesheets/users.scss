@@ -11,11 +11,9 @@
     -webkit-overflow-scrolling: touch;
 }
 body, html{
-     height: 100%;
- 	background-repeat: no-repeat;
- 	background:url(https://images4.alphacoders.com/190/190208.jpg);
+  height: 100%;
  	font-family: 'Oxygen', sans-serif;
-	    background-size: cover;
+  background: url(https://images4.alphacoders.com/190/190208.jpg) no-repeat center center fixed;
 }
 
 signup-login-form {

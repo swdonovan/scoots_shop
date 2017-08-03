@@ -5,6 +5,7 @@ class Admin::ItemsController < Admin::AdminController
   end
 
   def show
+
   end
 
   def edit
@@ -17,7 +18,7 @@ class Admin::ItemsController < Admin::AdminController
 
   def create
     @item = Item.new(item_attributes)
-    if @item.save!
+    if @item.save
       redirect_to item_path(@item)
     else
       flash[:danger] = 'Invalid information entered, try again'

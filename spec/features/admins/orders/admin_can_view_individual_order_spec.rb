@@ -31,7 +31,7 @@ RSpec.describe "A logged-in user that is an admin has a previous order" do
   expect(page).to have_content item2.line_item_total
   expect(page).to have_link item1.item.title
   expect(page).to have_link item2.item.title
-  expect(page).to have_content order.status
+  expect(page).to have_content order.status.capitalize
   expect(page).to have_content order.total_price
   expect(page).to have_content order.created_at
   expect(page).to have_content order.resolved_at

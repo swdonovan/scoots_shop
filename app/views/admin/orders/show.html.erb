@@ -1,6 +1,13 @@
-<h2>Order placed <%= @order.created_at %> </h2>
-<ul>
-  <li><%= @order.user.full_name %></li>
-  <p><%= @order.user.address %></p>
-</ul>
-<%= render partial: 'orders/show_items' %>
+<div class="opaque-back">
+  <h2>Order placed <%= @order.created_at %> </h2>
+  <%= render partial: 'orders/show_items' %>
+  <br>
+  <div class="row">
+    <div class="col-md-3">
+      <p>Order Placed By: <%= @order.user.full_name %></p>
+    </div>
+    <div class="col-md-3">
+      <p>Shipped To: <%= @order.user.address %></p>
+    </div>
+  </div>
+</div>

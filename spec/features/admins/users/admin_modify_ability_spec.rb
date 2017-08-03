@@ -16,38 +16,38 @@ RSpec.describe 'As an admin' do
     click_button "Get Ur Scoot On"
     expect(current_path).to eq admin_dashboard_path
 
-    visit admin_user_path(@admin)
+    visit dashboard_path(id: @admin.id)
 
-    click_on "Edit Info"
+    click_on "Edit Profile"
 
-    expect(current_path).to eq(edit_admin_user_path(@admin))
+    expect(current_path).to eq(edit_user_path(@admin))
     expect(page).to have_content("Bob")
 
     fill_in "Username", with: "Bobby"
-    click_on "Update your scoot-game"
+    click_on "Edit Your Account"
 
-    expect(current_path).to eq(admin_dashboard_path(@admin))
+    expect(current_path).to eq(dashboard_path)
   end
-    scenario "admin can't modify others info" do
-      @admin = User.create(username: "Bob", email: "bob@bob", password: "centrelli",
-                          role: 1)
 
-      @user = User.create(username: "Billy", email: "billy@bob", password: "Sage",
-                                              role: 0)
-      visit root_path
+  scenario "admin can't modify others info" do
+    @admin = User.create(username: "Bob", email: "bob@bob", password: "centrelli",
+                        role: 1)
 
-      within '.acct-dropdown-menu' do
-        click_link "Login"
-      end
-      expect(current_path).to eq login_path
-      fill_in "Username", with: "Bob"
-      fill_in "Password", with: "centrelli"
-      click_button "Get Ur Scoot On"
-      expect(current_path).to eq admin_dashboard_path
+    @user = User.create(username: "Billy", email: "billy@bob", password: "Sage",
+                                            role: 0)
+    visit root_path
 
-      visit admin_user_path(@user)
+    within '.acct-dropdown-menu' do
+      click_link "Login"
+    end
+    expect(current_path).to eq login_path
+    fill_in "Username", with: "Bob"
+    fill_in "Password", with: "centrelli"
+    click_button "Get Ur Scoot On"
+    expect(current_path).to eq admin_dashboard_path
 
-      expect(page).to_not have_content("edit")
+    visit dashboard_path(id: @user.id)
 
- end
+    expect(page).to_not have_link("Edit Profile")
+  end
 end

@@ -25,7 +25,7 @@ RSpec.feature 'Admin visits the admin orders index' do
     expect(page).to have_content "Cancelled: 3"
     expect(page).to have_content "Completed: 1"
 
-    expect(page).to have_link('View Order', href: order_path(order1))
+    expect(page).to have_link('View Order', href: admin_order_path(order1))
 
     click_on 'Ordered'
 

@@ -1,14 +1,16 @@
-<h1> Here are your past orders: </h1>
+<div class="opaque-back">
+  <h1> Here are your past orders: </h1>
 
-<table class="table orders-table">
-  <tr>
-    <th>Order</th>
-    <th>View Order</th>
-  </tr>
-  <% @orders.each do |order| %>
+  <table class="table orders-table">
     <tr>
-      <td>Your order from <%= order.created_at.to_s %></td>
-      <td><%= link_to "View Order", order_path(order) %></td>
+      <th>Order</th>
+      <th>View Order</th>
     </tr>
-  <% end %>
-</table>
+    <% @orders.each do |order| %>
+      <tr>
+        <td>Your order from <%= order.created_at.to_s %></td>
+        <td><%= link_to "View Order", order_path(order) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

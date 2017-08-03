@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_cart
   def index
-    if @user = current_user
-      @orders = @user.orders
+    if current_user
+      @orders = current_user.orders
     else
-      flash[:message] = "You must login to see your orders"
+      flash[:danger] = "You must login to see your orders"
       redirect_to login_path
     end
   end

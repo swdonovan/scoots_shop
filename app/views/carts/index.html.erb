@@ -1,21 +1,17 @@
-<h1>Cart</h1>
-
 <div class="row transparent-back">
+  <h1>Cart</h1>
   <% @items.each do |item| %>
     <div class="row cart-item">
       <div class="col-md-2">
         <img src="<%= item.image %>" class="img-thumbnail">
       </div>
       <div class="col-md-1">
-        <p>Model:</p>
         <p><%= item.title %></p>
       </div>
       <div class="col-md-5">
-        <p>Description:</p>
         <p><%= item.description %></p>
       </div>
       <div class="col-md-1">
-        <p>Price:</p>
         <p><%= item.price %></p>
       </div>
       <div class="col-md-2" id="item-<%= item.id %>-quantity">

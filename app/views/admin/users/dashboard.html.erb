@@ -26,7 +26,7 @@
         <td>Order created at <%= order.created_at %></td>
         <td><%= order.status %></td>
         <td>
-          <%= link_to 'View Order', order_path(order) %>
+          <%= link_to 'View Order', admin_order_path(order) %>
           <% if order.ordered? || order.paid? %>
              | <%= link_to 'Cancel', order_path(id: order.id, status: 'cancelled'), method: :put %>
           <% end %>
@@ -41,5 +41,7 @@
     <% end %>
   </table>
 
-  <%= link_to "Create New Item", new_admin_item_path %>
+  <h2>Items</h2>
+  <p><%= link_to 'View All Items', admin_items_path %></p>
+  <p><%= link_to "Create New Item", new_admin_item_path %></p>
 </div>

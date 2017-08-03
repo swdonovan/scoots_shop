@@ -1,7 +1,7 @@
 <div class="container">
       <div class="row">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-           <A href="<%= edit_user_path(@user) %>" >Edit Profile</A> |
+           <%= link_to 'Edit Profile', edit_user_path(@user) if @user == current_user %> |
            <%= link_to "Logout", login_path, method: :delete, id: 'page-logout' %>
        <br>
 <p class=" text-info"><%= Date.today %></p>
@@ -45,9 +45,9 @@
                         <td>Recent Purchases:</td>
                         <td>
                           <% if @user.orders.present? %>
-                          <%= link_to @user.orders.second_to_last.created_at, order_path(@user.orders[-2]) %>
-                          <br><br>
-                          <%= link_to @user.orders.last.created_at, order_path(@user.orders.last) %>
+                            <% @user.orders.last(4).each do |order| %>
+                              <%= link_to order.created_at, order_path(order) %>
+                            <% end %>
                           <% end %>
                         </td>
 
