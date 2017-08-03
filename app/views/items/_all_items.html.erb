@@ -1,9 +1,9 @@
 <div class="row">
   <% @items.each do |item| %>
-    <div class="col-sm-6 col-md-3 text-center item-card">
+    <div class="col-sm-6 col-md-3 item-card">
       <div class="thumbnail">
         <img src="<%= item.image %>" alt="" class="scoots">
-        <div class="caption">
+        <div class="caption text-center">
           <h3><%= link_to item.title, item_path(item) %></h3>
           <p><%= item.price %></p>
           <%= button_to "Add to Cart", carts_path(item_id: item.id), class: "btn btn-primary", id: "item-#{item.id}" %>

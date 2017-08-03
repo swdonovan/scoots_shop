@@ -70,3 +70,19 @@ li { list-style-type:none;}
 
 ::selection { background: #ff5e99; color: #FFFFFF; text-shadow: 0; }
 ::-moz-selection { background: #ff5e99; color: #FFFFFF; }
+
+.thumbnail {
+  position: relative;
+  min-height: 420px;
+}
+
+.caption {
+  position: absolute;
+  width: 100%;
+  bottom: 5px;
+  right: 1px;
+}
+
+.thumbnail > img {
+  min-height: 250px;
+}
